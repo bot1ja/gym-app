@@ -204,11 +204,6 @@
     <button class="next" onclick="nextExercise()">Siguiente ejercicio ▶</button>
     <button class="reset" onclick="resetWeek()">Reset semana</button>
 
-    <div class="modal" id="videoModal">
-        <div class="close" onclick="closeVideo()">✕</div>
-        <iframe id="youtube"></iframe>
-    </div>
-
     <script>
 
         const routine = {
@@ -314,11 +309,9 @@ ${ex[0]}
 
         function video(id){
 
-            let url="https://www.youtube.com/embed/"+id
+            let url="https://youtu.be/"+id
 
-            document.getElementById("youtube").src=url
-
-            document.getElementById("videoModal").style.display="flex"
+            window.open(url,"_blank")
 
         }
 
