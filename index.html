@@ -312,13 +312,13 @@ ${ex[0]}
 
         }
 
-        function video(query) {
+        function video(id){
 
-            let url = "https://www.youtube.com/embed?listType=search&list=" + encodeURIComponent(query)
+            let url="https://www.youtube.com/embed/"+id
 
-            document.getElementById("youtube").src = url
+            document.getElementById("youtube").src=url
 
-            document.getElementById("videoModal").style.display = "flex"
+            document.getElementById("videoModal").style.display="flex"
 
         }
 
