@@ -139,12 +139,35 @@
         }
 
         .video {
-            background: linear-gradient(135deg,
-                    #ff6b6b,
-                    #ff3d68);
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 34px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video::before {
+            content: "";
+            width: 28px;
+            height: 20px;
+            background: #FF0000;
+            border-radius: 8px;
+            position: absolute;
+        }
+
+        .video::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid white;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            margin-left: 2px;
         }
 
         .next {
