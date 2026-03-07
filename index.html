@@ -10,11 +10,18 @@
 
     <style>
         :root {
-            --bg: #0f0f0f;
-            --card: #1c1c1c;
-            --accent: #2ecc71;
-            --danger: #e74c3c;
-            --blue: #3498db;
+
+            --bg: #0b0f1a;
+            --card: #141a2e;
+
+            --accent: #6C7BFF;
+            --accent2: #A66BFF;
+
+            --text: #ffffff;
+            --muted: #9aa3b2;
+
+            --danger: #ff5a6f;
+
         }
 
         * {
@@ -26,21 +33,35 @@
         }
 
         body {
+
             margin: 0;
             font-family: system-ui, -apple-system, Arial;
-            background: var(--bg);
+
+            background:
+                radial-gradient(circle at 20% 10%, #1a2140 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, #3a1d5f 0%, transparent 40%),
+                #0b0f1a;
+
             color: white;
+
             min-height: 100svh;
+
         }
 
         header {
-            padding: 16px;
+
+            padding: 20px;
+
+            font-weight: 700;
+
+            font-size: 20px;
+
+            background: transparent;
+
+            letter-spacing: .5px;
+
             text-align: center;
-            font-weight: 600;
-            background: #1a1a1a;
-            position: sticky;
-            top: 0;
-            z-index: 5;
+
         }
 
         .container {
@@ -50,17 +71,47 @@
         }
 
         .day {
-            background: var(--card);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            overflow: hidden;
+
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.05),
+                    rgba(255, 255, 255, 0.01));
+
+            border-radius: 22px;
+
+            margin-bottom: 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            backdrop-filter: blur(10px);
+
         }
 
         .day-header {
+
             padding: 16px;
+
             font-weight: 600;
+
             background: #262626;
+
             cursor: pointer;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .accordion-icon {
+
+            font-size: 22px;
+
+            font-weight: 600;
+
+            opacity: .8;
+
         }
 
         .day-content {
@@ -69,10 +120,17 @@
         }
 
         .exercise {
-            background: #232323;
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 10px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border-radius: 18px;
+
+            padding: 14px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
         }
 
         .row {
@@ -94,15 +152,25 @@
             height: 20px;
         }
 
-        input[type="number"] {
-            width: 70px;
-            height: 42px;
-            font-size: 16px;
-            background: #111;
-            border: 1px solid #444;
+        input[type="number"],
+        .set-box input {
+
+            width: 60px;
+            height: 44px;
+
+            border-radius: 12px;
+
+            background: #0f1426;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
             color: white;
-            border-radius: 8px;
+
+            font-size: 16px;
+            font-weight: 600;
+
             text-align: center;
+
         }
 
         button {
@@ -115,13 +183,17 @@
         }
 
         .video {
-            background: var(--danger);
-            color: white;
-        }
 
-        .timer-btn {
-            background: var(--blue);
-            color: white;
+            background: linear-gradient(135deg,
+                    #ff6b6b,
+                    #ff3d68);
+
+            border-radius: 12px;
+
+            padding: 10px 14px;
+
+            font-weight: 600;
+
         }
 
         .next {
@@ -137,9 +209,17 @@
         }
 
         .bar {
+
             height: 6px;
-            background: var(--accent);
+
+            background: linear-gradient(90deg,
+                    #6C7BFF,
+                    #A66BFF);
+
+            border-radius: 10px;
+
             width: 0%;
+
         }
 
         .timer {
@@ -177,9 +257,29 @@
         }
 
         .reset {
+
             width: 100%;
-            background: #f39c12;
-            margin-top: 10px;
+
+            margin-top: 12px;
+
+            background: linear-gradient(135deg,
+                    #6C7BFF,
+                    #A66BFF);
+
+            color: white;
+
+            font-weight: 600;
+
+            border-radius: 14px;
+
+            padding: 12px;
+
+            box-shadow: 0 6px 16px rgba(108, 123, 255, 0.35);
+
+        }
+
+        .reset:active {
+            transform: scale(.97);
         }
 
         @media(max-width:600px) {
@@ -189,6 +289,43 @@
                 align-items: flex-start;
             }
 
+        }
+
+        .sets {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .set-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .set-box span {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .set-box input {
+            width: 60px;
+            height: 42px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .sets input {
+            width: 60px;
+            height: 42px;
+            text-align: center;
         }
     </style>
 </head>
@@ -201,53 +338,57 @@
 
     <div class="container" id="workout"></div>
 
-    <button class="next" onclick="nextExercise()">Siguiente ejercicio ▶</button>
-    <button class="reset" onclick="resetWeek()">Reset semana</button>
+    <button class="reset" onclick="resetWeek()">Reset All Progress</button>
+
+    <div class="modal" id="videoModal">
+        <div class="close" onclick="closeVideo()">✕</div>
+        <iframe id="youtube"></iframe>
+    </div>
 
     <script>
 
         const routine = {
 
-            "Día 1 – Pecho + Tríceps":[
-                ["Press banca","rT7DgCr-3pg"],
-                ["Press inclinado mancuernas","8iPEnn-ltC8"],
-                ["Peck deck","eozdVDA78K0"],
-                ["Fondos en banco","0326dy_-CzM"],
-                ["Flexiones","IODxDxX7oi4"],
-                ["Tríceps polea","2-LAMcpzODU"]
+            "Día 1 – Pecho + Tríceps": [
+                ["Press banca", "bench press barbell", 4, 10],
+                ["Press inclinado mancuernas", "incline dumbbell press", 4, 10],
+                ["Peck deck", "pec deck machine", 3, 12],
+                ["Fondos en banco", "bench dips triceps", 3, 12],
+                ["Flexiones", "push ups exercise", 3, 15],
+                ["Tríceps polea", "cable triceps pushdown", 3, 12]
             ],
 
-            "Día 2 – Pierna":[
-                ["Sentadilla rack","Dy28eq2PjcM"],
-                ["Prensa de pierna","IZxyjW7MPJQ"],
-                ["Peso muerto rumano","2SHsk9AzdjA"],
-                ["Step ups","dQqApCGd5Ss"],
-                ["Pantorrillas","YMmgqO8Jo-k"],
-                ["Kettlebell swings","YSxHifyI7uk"]
+            "Día 2 – Pierna": [
+                ["Sentadilla rack", "barbell squat", 4, 10],
+                ["Prensa de pierna", "leg press machine", 4, 10],
+                ["Peso muerto rumano", "romanian deadlift", 4, 10],
+                ["Step ups", "step ups dumbbells", 3, 12],
+                ["Pantorrillas", "calf raises", 4, 15],
+                ["Kettlebell swings", "kettlebell swings", 3, 15]
             ],
 
             "Día 3 – Cardio": [
-                ["Bicicleta 35-40 min", "stationary bike cardio workout"]
+                ["Bicicleta", "stationary bike cardio workout", 1, "40 min"]
             ],
 
-            "Día 4 – Espalda + Bíceps":[
-                ["Dominadas","eGo4IYlbE5g"],
-                ["Jalón polea","CAwf7n6Luuc"],
-                ["Remo mancuernas","roCP6wCXPqo"],
-                ["Curl bíceps barra","ykJmrZ5v0Oo"],
-                ["Curl martillo","TwD-YGVP4Bk"],
-                ["Face pulls","rep-qVOkqgk"]
+            "Día 4 – Espalda + Bíceps": [
+                ["Dominadas", "pull ups", 4, 8],
+                ["Jalón polea", "lat pulldown", 4, 10],
+                ["Remo mancuernas", "dumbbell row", 4, 10],
+                ["Curl bíceps barra", "barbell curl", 3, 12],
+                ["Curl martillo", "hammer curl", 3, 12],
+                ["Face pulls", "face pulls resistance band", 3, 15]
             ],
 
-            "Día 5 – Hombros + Core":[
-                ["Press militar","qEwKCR5JCog"],
-                ["Elevaciones laterales","3VcKaXpzqRo"],
-                ["Elevaciones posteriores","EA7u4Q_8HQ0"],
-                ["Encogimientos trapecio","XIkPI-_80r4"],
-                ["Kettlebell swings","YSxHifyI7uk"],
-                ["Crunch","MKmrqcoCZ-M"],
-                ["Elevaciones piernas","JB2oyawG9KI"],
-                ["Plancha","pSHjTRCQxIw"]
+            "Día 5 – Hombros + Core": [
+                ["Press militar", "dumbbell shoulder press", 4, 10],
+                ["Elevaciones laterales", "lateral raises", 3, 12],
+                ["Elevaciones posteriores", "rear delt raises", 3, 12],
+                ["Encogimientos trapecio", "dumbbell shrugs", 3, 12],
+                ["Kettlebell swings", "kettlebell swings", 3, 15],
+                ["Crunch", "bench crunch abs", 3, 20],
+                ["Elevaciones piernas", "leg raises abs", 3, 15],
+                ["Plancha", "plank core exercise", 3, "45s"]
             ]
 
         }
@@ -257,7 +398,10 @@
         Object.keys(routine).forEach(day => {
 
             let html = `<div class="day">
-<div class="day-header" onclick="toggle(this)">${day}</div>
+<div class="day-header" onclick="toggle(this)">
+<span>${day}</span>
+<span class="accordion-icon">+</span>
+</div>
 <div class="progress"><div class="bar"></div></div>
 <div class="day-content">`
 
@@ -274,13 +418,24 @@
 ${ex[0]}
 </label>
 
-<div>
+<div class="sets">
 
+<div class="set-box">
+<span>Rounds</span>
+<input type="number" value="${ex[2]}" readonly>
+</div>
+
+<div class="set-box">
+<span>Reps</span>
+<input type="text" value="${ex[3]}" readonly>
+</div>
+
+<div class="set-box">
+<span>Weight</span>
 <input type="number" placeholder="kg" onchange="save()">
+</div>
 
 <button class="video" onclick="video('${ex[1]}')">▶</button>
-
-<button class="timer-btn" onclick="startTimer(60)">⏱</button>
 
 </div>
 
@@ -301,17 +456,29 @@ ${ex[0]}
         function toggle(el) {
 
             let content = el.parentElement.querySelector(".day-content")
+            let icon = el.querySelector(".accordion-icon")
 
-            content.style.display =
-                content.style.display === "block" ? "none" : "block"
+            if (content.style.display === "block") {
+
+                content.style.display = "none"
+                icon.innerHTML = "+"
+
+            } else {
+
+                content.style.display = "block"
+                icon.innerHTML = "−"
+
+            }
 
         }
 
-        function video(id){
+        function video(query) {
 
-            let url="https://youtu.be/"+id
+            let url = "https://www.youtube.com/embed?listType=search&list=" + encodeURIComponent(query)
 
-            window.open(url,"_blank")
+            document.getElementById("youtube").src = url
+
+            document.getElementById("videoModal").style.display = "flex"
 
         }
 
