@@ -419,50 +419,32 @@ ${ex[0]}
 </div>
 
 `
-
             })
-
             html += `</div></div>`
-
             container.innerHTML += html
-
         })
 
         function toggle(el) {
-
             let content = el.parentElement.querySelector(".day-content")
             let icon = el.querySelector(".accordion-icon")
-
             if (content.style.display === "block") {
-
                 content.style.display = "none"
                 icon.innerHTML = "+"
-
             } else {
-
                 content.style.display = "block"
                 icon.innerHTML = "−"
-
             }
 
         }
 
         function video(query) {
-
-            let url = "https://www.youtube.com/embed?listType=search&list=" + encodeURIComponent(query)
-
-            document.getElementById("youtube").src = url
-
-            document.getElementById("videoModal").style.display = "flex"
-
+            let url = "https://www.youtube.com/results?search_query=" + encodeURIComponent(query)
+            window.open(url, "_blank", "noopener,noreferrer")
         }
 
         function closeVideo() {
-
             document.getElementById("videoModal").style.display = "none"
-
             document.getElementById("youtube").src = ""
-
         }
 
         let countdown
@@ -586,12 +568,12 @@ ${ex[0]}
 
     <nav class="bottom-nav">
 
-        <div class="nav-item active">
+        <div class="nav-item">
             <i class="fa-solid fa-house nav-icon"></i>
             <span class="nav-label">Home</span>
         </div>
 
-        <div class="nav-item">
+        <div class="nav-item active">
             <i class="fa-solid fa-dumbbell nav-icon"></i>
             <span class="nav-label">Routine</span>
         </div>
