@@ -5,23 +5,19 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <title>Rutina Luis Diego Mora</title>
 
     <style>
         :root {
-
             --bg: #0b0f1a;
             --card: #141a2e;
-
             --accent: #6C7BFF;
             --accent2: #A66BFF;
-
             --text: #ffffff;
             --muted: #9aa3b2;
-
             --danger: #ff5a6f;
-
         }
 
         * {
@@ -36,82 +32,56 @@
 
             margin: 0;
             font-family: system-ui, -apple-system, Arial;
-
             background:
                 radial-gradient(circle at 20% 10%, #1a2140 0%, transparent 40%),
                 radial-gradient(circle at 80% 90%, #3a1d5f 0%, transparent 40%),
                 #0b0f1a;
 
             color: white;
-
             min-height: 100svh;
-
         }
 
         header {
-
             padding: 20px;
-
             font-weight: 700;
-
             font-size: 20px;
-
             background: transparent;
-
             letter-spacing: .5px;
-
             text-align: center;
 
         }
 
         .container {
             padding: 12px;
+            padding-bottom: 90px;
             max-width: 700px;
             margin: auto;
         }
 
         .day {
-
             background: linear-gradient(180deg,
                     rgba(255, 255, 255, 0.05),
                     rgba(255, 255, 255, 0.01));
-
             border-radius: 22px;
-
             margin-bottom: 16px;
-
             border: 1px solid rgba(255, 255, 255, 0.06);
-
             backdrop-filter: blur(10px);
-
         }
 
         .day-header {
-
             padding: 16px;
-
             font-weight: 600;
-
             background: #262626;
-
             cursor: pointer;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
         }
 
         .accordion-icon {
-
             font-size: 22px;
-
             font-weight: 600;
-
             opacity: .8;
-
         }
 
         .day-content {
@@ -120,17 +90,11 @@
         }
 
         .exercise {
-
             background: rgba(255, 255, 255, 0.04);
-
             border-radius: 18px;
-
             padding: 14px;
-
             margin-bottom: 12px;
-
             border: 1px solid rgba(255, 255, 255, 0.05);
-
         }
 
         .row {
@@ -154,23 +118,15 @@
 
         input[type="number"],
         .set-box input {
-
             width: 60px;
             height: 44px;
-
             border-radius: 12px;
-
             background: #0f1426;
-
             border: 1px solid rgba(255, 255, 255, 0.08);
-
             color: white;
-
             font-size: 16px;
             font-weight: 600;
-
             text-align: center;
-
         }
 
         button {
@@ -183,17 +139,12 @@
         }
 
         .video {
-
             background: linear-gradient(135deg,
                     #ff6b6b,
                     #ff3d68);
-
             border-radius: 12px;
-
             padding: 10px 14px;
-
             font-weight: 600;
-
         }
 
         .next {
@@ -209,17 +160,13 @@
         }
 
         .bar {
-
             height: 6px;
-
             background: linear-gradient(90deg,
                     #6C7BFF,
                     #A66BFF);
 
             border-radius: 10px;
-
             width: 0%;
-
         }
 
         .timer {
@@ -257,25 +204,16 @@
         }
 
         .reset {
-
             width: 100%;
-
             margin-top: 12px;
-
             background: linear-gradient(135deg,
                     #6C7BFF,
                     #A66BFF);
-
             color: white;
-
             font-weight: 600;
-
             border-radius: 14px;
-
             padding: 12px;
-
             box-shadow: 0 6px 16px rgba(108, 123, 255, 0.35);
-
         }
 
         .reset:active {
@@ -283,12 +221,10 @@
         }
 
         @media(max-width:600px) {
-
             .row {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
         }
 
         .sets {
@@ -326,6 +262,45 @@
             width: 60px;
             height: 42px;
             text-align: center;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: rgba(20, 26, 46, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            color: #9aa3b2;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+            transition: all .25s ease;
+        }
+
+        .nav-item.active {
+            color: #A66BFF;
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -608,6 +583,30 @@ ${ex[0]}
         load()
 
     </script>
+
+    <nav class="bottom-nav">
+
+        <div class="nav-item active">
+            <i class="fa-solid fa-house nav-icon"></i>
+            <span class="nav-label">Home</span>
+        </div>
+
+        <div class="nav-item">
+            <i class="fa-solid fa-dumbbell nav-icon"></i>
+            <span class="nav-label">Routine</span>
+        </div>
+
+        <div class="nav-item">
+            <i class="fa-solid fa-calendar nav-icon"></i>
+            <span class="nav-label">Calendar</span>
+        </div>
+
+        <div class="nav-item">
+            <i class="fa-solid fa-gear nav-icon"></i>
+            <span class="nav-label">Settings</span>
+        </div>
+
+    </nav>
 
 </body>
 
