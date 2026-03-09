@@ -1,617 +1,150 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Fitness App</title>
 
-    <title>Rutina Luis Diego Mora</title>
+<style>
+/**/
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-    <style>
-        :root {
-            --bg: #0b0f1a;
-            --card: #141a2e;
-            --accent: #6C7BFF;
-            --accent2: #A66BFF;
-            --text: #ffffff;
-            --muted: #9aa3b2;
-            --danger: #ff5a6f;
-        }
+.hero{
+height:100vh;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
 
-        * {
-            box-sizing: border-box;
-        }
+background-image:url("images/background-02-1920x750.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 
-        html {
-            scroll-behavior: smooth;
-        }
+position:relative;
+}
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, Arial;
-            background:
-                radial-gradient(circle at 20% 10%, #1a2140 0%, transparent 40%),
-                radial-gradient(circle at 80% 90%, #3a1d5f 0%, transparent 40%),
-                #0b0f1a;
-            color: white;
-            min-height: 100svh;
-            padding-bottom:85px;
-        }
+/* Imagen de fondo */
 
-        header {
-            padding: 20px;
-            font-weight: 700;
-            font-size: 20px;
-            background: transparent;
-            letter-spacing: .5px;
-            text-align: center;
+.hero-bg{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:1;
+}
 
-        }
+/* overlay oscuro */
 
-        .container {
-            padding: 12px;
-            padding-bottom: 90px;
-            max-width: 700px;
-            margin: auto;
-        }
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+z-index:1;
+}
 
-        .day {
-            background: linear-gradient(180deg,
-                    rgba(255, 255, 255, 0.05),
-                    rgba(255, 255, 255, 0.01));
-            border-radius: 22px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(10px);
-        }
+/* contenido */
 
-        .day-header {
-            padding: 16px;
-            font-weight: 600;
-            background: #262626;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.hero-content{
+position:relative;
+z-index:2;
+max-width:600px;
+padding:20px;
+}
 
-        .accordion-icon {
-            font-size: 22px;
-            font-weight: 600;
-            opacity: .8;
-        }
+.hero h1{
+font-family:'Ubuntu', Helvetica, Arial, sans-serif;
+font-style:italic;
+font-weight:700;
+font-size:40px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:white;
+text-align:center;
+margin-bottom:15px;
+}
 
-        .day-content {
-            display: none;
-            padding: 12px;
-        }
+.hero p{
+font-size:16px;
+line-height:1.5;
+margin-bottom:25px;
+color:#ffffff;
+}
 
-        .exercise {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 18px;
-            padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+/* botón */
 
-        .row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+.cta{
+background:#7c3aed;
+color:white;
+border:none;
+padding:14px 32px;
+font-weight:600;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+transition:all .2s ease;
+}
 
-        label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.cta:active{
+transform:scale(0.95);
+}
 
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-        }
+.cta:hover{
+background:#6d28d9;
+}
 
-        input[type="number"],
-        .set-box input {
-            width: 60px;
-            height: 44px;
-            border-radius: 12px;
-            background: #0f1426;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            text-align: center;
-        }
+/* DESKTOP */
 
-        button {
-            border: none;
-            border-radius: 8px;
-            padding: 10px 12px;
-            min-height: 44px;
-            font-size: 15px;
-            cursor: pointer;
-        }
+@media (min-width:768px){
 
-        .video {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            width: 34px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.hero h1{
+font-size:64px;
+}
 
-        .video::before {
-            content: "";
-            width: 28px;
-            height: 20px;
-            background: #FF0000;
-            border-radius: 8px;
-            position: absolute;
-        }
+.hero p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+margin-bottom:30px;
+}
 
-        .video::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 8px solid white;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-            margin-left: 2px;
-        }
+}
 
-        .next {
-            background: var(--accent);
-            width: 100%;
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        .progress {
-            height: 6px;
-            background: #333;
-        }
-
-        .bar {
-            height: 6px;
-            background: linear-gradient(90deg,
-                    #6C7BFF,
-                    #A66BFF);
-
-            border-radius: 10px;
-            width: 0%;
-        }
-
-        .timer {
-            text-align: center;
-            font-size: 28px;
-            padding: 12px;
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, .85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        iframe {
-            width: 92%;
-            max-width: 600px;
-            aspect-ratio: 16/9;
-            border: none;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 32px;
-            cursor: pointer;
-        }
-
-        .reset {
-            width: 100%;
-            margin-top: 12px;
-            background: linear-gradient(135deg,
-                    #6C7BFF,
-                    #A66BFF);
-            color: white;
-            font-weight: 600;
-            border-radius: 14px;
-            padding: 12px;
-            box-shadow: 0 6px 16px rgba(108, 123, 255, 0.35);
-        }
-
-        .reset:active {
-            transform: scale(.97);
-        }
-
-        @media(max-width:600px) {
-            .row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        .sets {
-            display: flex;
-            align-items: flex-end;
-            gap: 8px;
-            margin-top: 6px;
-            flex-wrap: wrap;
-        }
-
-        .set-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .set-box span {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        .set-box input {
-            width: 60px;
-            height: 42px;
-            text-align: center;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background: #111;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .sets input {
-            width: 60px;
-            height: 42px;
-            text-align: center;
-        }
-
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 75px;
-            background: rgba(20, 26, 46, 0.95);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 20;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 11px;
-            color: #9aa3b2;
-            cursor: pointer;
-            transition: all .25s ease;
-        }
-
-        .nav-icon {
-            font-size: 22px;
-            margin-bottom: 4px;
-            transition: all .25s ease;
-        }
-
-        .nav-item.active {
-            color: #A66BFF;
-        }
-
-        .nav-item.active .nav-icon {
-            transform: scale(1.2);
-        }
-    </style>
+</style>
 </head>
+
 
 <body>
 
-    <header>Rutina Funcional</header>
+<section class="hero">
 
-    <div class="timer" id="timer">00:00</div>
+<div class="hero-content">
 
-    <div class="container" id="workout"></div>
+<h1>NEVER GIVE UP</h1>
 
-    <button class="reset" onclick="resetWeek()">Reset All Progress</button>
+<p>
+Every bodybuilder requires a lot of dedication and effort to shape his/her body into something to be proud of.
+</p>
 
-    <div class="modal" id="videoModal">
-        <div class="close" onclick="closeVideo()">✕</div>
-        <iframe id="youtube"></iframe>
-    </div>
-
-    <script>
-
-        const routine = {
-
-            "Día 1 – Pecho + Tríceps": [
-                ["Press banca", "bench press barbell", 4, 10],
-                ["Press inclinado mancuernas", "incline dumbbell press", 4, 10],
-                ["Peck deck", "pec deck machine", 3, 12],
-                ["Fondos en banco", "bench dips triceps", 3, 12],
-                ["Flexiones", "push ups exercise", 3, 15],
-                ["Tríceps polea", "cable triceps pushdown", 3, 12]
-            ],
-
-            "Día 2 – Pierna": [
-                ["Sentadilla rack", "barbell squat", 4, 10],
-                ["Prensa de pierna", "leg press machine", 4, 10],
-                ["Peso muerto rumano", "romanian deadlift", 4, 10],
-                ["Step ups", "step ups dumbbells", 3, 12],
-                ["Pantorrillas", "calf raises", 4, 15],
-                ["Kettlebell swings", "kettlebell swings", 3, 15]
-            ],
-
-            "Día 3 – Cardio": [
-                ["Bicicleta", "stationary bike cardio workout", 1, "40 min"]
-            ],
-
-            "Día 4 – Espalda + Bíceps": [
-                ["Dominadas", "pull ups", 4, 8],
-                ["Jalón polea", "lat pulldown", 4, 10],
-                ["Remo mancuernas", "dumbbell row", 4, 10],
-                ["Curl bíceps barra", "barbell curl", 3, 12],
-                ["Curl martillo", "hammer curl", 3, 12],
-                ["Face pulls", "face pulls resistance band", 3, 15]
-            ],
-
-            "Día 5 – Hombros + Core": [
-                ["Press militar", "dumbbell shoulder press", 4, 10],
-                ["Elevaciones laterales", "lateral raises", 3, 12],
-                ["Elevaciones posteriores", "rear delt raises", 3, 12],
-                ["Encogimientos trapecio", "dumbbell shrugs", 3, 12],
-                ["Kettlebell swings", "kettlebell swings", 3, 15],
-                ["Crunch", "bench crunch abs", 3, 20],
-                ["Elevaciones piernas", "leg raises abs", 3, 15],
-                ["Plancha", "plank core exercise", 3, "45s"]
-            ]
-
-        }
-
-        const container = document.getElementById("workout")
-
-        Object.keys(routine).forEach(day => {
-
-            let html = `<div class="day">
-<div class="day-header" onclick="toggle(this)">
-<span>${day}</span>
-<span class="accordion-icon">+</span>
-</div>
-<div class="progress"><div class="bar"></div></div>
-<div class="day-content">`
-
-            routine[day].forEach(ex => {
-
-                html += `
-
-<div class="exercise">
-
-<div class="row">
-
-<label>
-<input type="checkbox" onchange="save()">
-${ex[0]}
-</label>
-
-<div class="sets">
-
-<div class="set-box">
-<span>Rounds</span>
-<input type="number" value="${ex[2]}" readonly>
-</div>
-
-<div class="set-box">
-<span>Reps</span>
-<input type="text" value="${ex[3]}" readonly>
-</div>
-
-<div class="set-box">
-<span>Weight</span>
-<input type="number" placeholder="kg" onchange="save()">
-</div>
-
-<button class="video" onclick="video('${ex[1]}')">▶</button>
+<a href="./routine.html"><button class="cta">GET STARTED</button></a>
 
 </div>
 
-</div>
-
-</div>
-
-`
-            })
-            html += `</div></div>`
-            container.innerHTML += html
-        })
-
-        function toggle(el) {
-            let content = el.parentElement.querySelector(".day-content")
-            let icon = el.querySelector(".accordion-icon")
-            if (content.style.display === "block") {
-                content.style.display = "none"
-                icon.innerHTML = "+"
-            } else {
-                content.style.display = "block"
-                icon.innerHTML = "−"
-            }
-
-        }
-
-        function video(query) {
-            let url = "https://www.youtube.com/results?search_query=" + encodeURIComponent(query)
-            window.open(url, "_blank", "noopener,noreferrer")
-        }
-
-        function closeVideo() {
-            document.getElementById("videoModal").style.display = "none"
-            document.getElementById("youtube").src = ""
-        }
-
-        let countdown
-
-        function startTimer(sec) {
-
-            clearInterval(countdown)
-
-            let time = sec
-
-            let audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg")
-
-            countdown = setInterval(() => {
-
-                let m = Math.floor(time / 60)
-                let s = time % 60
-
-                document.getElementById("timer").innerHTML =
-                    String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0")
-
-                time--
-
-                if (time < 0) {
-
-                    clearInterval(countdown)
-
-                    audio.play().catch(() => { })
-
-                    document.getElementById("timer").innerHTML = "GO"
-
-                }
-
-            }, 1000)
-
-        }
-
-        function save() {
-
-            let data = []
-
-            document.querySelectorAll(".exercise").forEach(e => {
-
-                let check = e.querySelector("input[type=checkbox]").checked
-                let weight = e.querySelector("input[type=number]").value
-
-                data.push({ check, weight })
-
-            })
-
-            localStorage.setItem("gymData", JSON.stringify(data))
-
-            updateProgress()
-
-        }
-
-        function load() {
-
-            let saved = JSON.parse(localStorage.getItem("gymData"))
-
-            if (!saved) return
-
-            document.querySelectorAll(".exercise").forEach((e, i) => {
-
-                if (!saved[i]) return
-
-                e.querySelector("input[type=checkbox]").checked = saved[i].check
-                e.querySelector("input[type=number]").value = saved[i].weight
-
-            })
-
-            updateProgress()
-
-        }
-
-        function updateProgress() {
-
-            document.querySelectorAll(".day").forEach(day => {
-
-                let checks = day.querySelectorAll("input[type=checkbox]")
-                let bar = day.querySelector(".bar")
-
-                let done = 0
-
-                checks.forEach(c => { if (c.checked) done++ })
-
-                bar.style.width = (done / checks.length) * 100 + "%"
-
-            })
-
-        }
-
-        function nextExercise() {
-
-            let boxes = [...document.querySelectorAll("input[type=checkbox]")]
-
-            for (let b of boxes) {
-
-                if (!b.checked) {
-
-                    b.scrollIntoView({ behavior: "smooth", block: "center" })
-                    return
-
-                }
-
-            }
-
-            alert("Entrenamiento terminado 💪")
-
-        }
-
-        function resetWeek() {
-
-            localStorage.removeItem("gymData")
-            location.reload()
-
-        }
-
-        load()
-
-    </script>
-
-    <nav class="bottom-nav">
-
-        <div class="nav-item">
-            <i class="fa-solid fa-house nav-icon"></i>
-            <span class="nav-label">Home</span>
-        </div>
-
-        <div class="nav-item active">
-            <i class="fa-solid fa-dumbbell nav-icon"></i>
-            <span class="nav-label">Routine</span>
-        </div>
-
-        <div class="nav-item">
-            <i class="fa-solid fa-calendar nav-icon"></i>
-            <span class="nav-label">Calendar</span>
-        </div>
-
-        <div class="nav-item">
-            <i class="fa-solid fa-gear nav-icon"></i>
-            <span class="nav-label">Settings</span>
-        </div>
-
-    </nav>
+</section>
 
 </body>
-
 </html>
